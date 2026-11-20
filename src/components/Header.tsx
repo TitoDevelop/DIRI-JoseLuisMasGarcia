@@ -1,4 +1,8 @@
-function Header() {
+interface HeaderProps {
+  title: string;
+}
+
+function Header({ title }: HeaderProps) {
   return (
     <div className="header">
       <div className="menuIcon" aria-hidden="true">
@@ -6,15 +10,15 @@ function Header() {
         <div className="dashBottom"></div>
         <div className="circle"></div>
       </div>
-      <h1>Registro de Tareas</h1>
+      <h2>{title}</h2>
       <div className="searchBox">
         <input
           type="text"
           className="searchInput"
           placeholder="Buscar ..."
-          aria-label="Buscar tareas"
+          aria-label={`Buscar en ${title}`}
         />
-        <div className="fa fa-search searchIcon" aria-hidden="true"></div>
+        <span className="fa fa-search searchIcon" aria-hidden="true"></span>
       </div>
     </div>
   );

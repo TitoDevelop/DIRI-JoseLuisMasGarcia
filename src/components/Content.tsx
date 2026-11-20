@@ -1,27 +1,33 @@
+import ActivityItem from './ActivityItem';
+
 function Content() {
   return (
     <div className="content">
       <div className="line"></div>
-      <div className="item">
-        <div className="avatar"><img alt="Francisca" src="/images/francisca.jpg" /></div>
-        <span className="time">Hace una hora</span>
-        <p>Fui a comer con amigos</p>
-      </div>
-      <div className="item">
-        <div className="avatar"><img alt="Paco" src="/images/paco.jpg" /></div>
-        <span className="time">10:00 am</span>
-        <p>Leí un artículo sobre tecnología</p>
-      </div>
-      <div className="item">
-        <div className="avatar"><img alt="Quica" src="/images/quica.jpg" /></div>
-        <span className="time">10:00 am</span>
-        <p>Escribí notas sobre un proyecto importante</p>
-      </div>
-      <div className="item">
-        <div className="avatar"><img alt="Curro" src="/images/curro.jpg" /></div>
-        <span className="time">2:21 pm</span>
-        <p>Preparé la presentación para la reunión de mañana</p>
-      </div>
+      <ActivityItem
+        nombreImagen="francisca"
+        valorAlt="Francisca"
+        hora="Hace una hora"
+        descripcion="Fui a comer con amigos"
+      />
+      <ActivityItem
+        nombreImagen="paco"
+        valorAlt="Paco"
+        hora="10:00 am"
+        descripcion="Leí un artículo sobre tecnología"
+      />
+      <ActivityItem
+        nombreImagen="quica"
+        valorAlt="Quica"
+        hora="10:00 am"
+        descripcion="Escribí notas sobre un proyecto importante"
+      />
+      <ActivityItem
+        nombreImagen="curro"
+        valorAlt="Curro"
+        hora="2:21 pm"
+        descripcion="Preparé la presentación para la reunión de mañana"
+      />
     </div>
   );
 }
