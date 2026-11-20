@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f2ed; color: #303733; font-family: Arial, Helvetica, sans-serif; }
+.notificationsFrame { min-height: 100vh; display: flex; justify-content: center; padding: 65px 20px; }
+.panel { width: min(100%, 720px); background: white; border: 1px solid #e8e8e3; box-shadow: 0 12px 35px rgba(30,40,30,.07); border-radius: 10px; overflow: hidden; }
+.header { display: flex; align-items: center; gap: 15px; padding: 23px 28px; background: #314b44; color: white; }
+.header h1 { font-size: 22px; font-weight: 600; margin: 0; flex: 1; }
+.menuIcon { width: 25px; height: 25px; position: relative; flex-shrink: 0; }
+.dashTop,.dashBottom { position: absolute; height: 2px; background: #e9f2ed; border-radius: 2px; left: 1px; }
+.dashTop { top: 6px; width: 22px; } .dashBottom { top: 15px; width: 15px; } .circle { position: absolute; width: 5px; height: 5px; top: 13px; right: 1px; border: 1px solid white; border-radius: 50%; }
+.searchBox { position: relative; width: 170px; }
+.searchInput { width: 100%; height: 34px; border: 1px solid #678078; background: #476158; color: white; border-radius: 5px; padding: 0 32px 0 10px; outline: none; }
+.searchInput::placeholder { color: #d7e4dd; } .searchInput:focus { border-color: #e6efe8; }
+.searchIcon { position: absolute; right: 10px; top: 10px; font-size: 13px; color: #e0eae2; }
+.content { padding: 18px 30px 25px 45px; position: relative; }
+.line { position: absolute; top: 45px; bottom: 65px; left: 73px; width: 2px; background: #e1e9e2; }
+.item { position: relative; min-height: 100px; padding: 17px 0 18px 83px; border-bottom: 1px solid #edf0ed; }
+.item:last-child { border-bottom: none; }
+.avatar { position: absolute; left: 0; top: 14px; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 3px solid #fff; box-shadow: 0 0 0 1px #d8e2d9; background: #e2e2e2; }
+.avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.time { display: block; color: #718278; font-size: 13px; margin-bottom: 8px; }
+.item p { margin: 0; font-size: 16px; line-height: 1.5; }
+@media (max-width: 560px) { .notificationsFrame { padding: 20px 10px; } .header { flex-wrap: wrap; padding: 20px; } .header h1 { font-size: 20px; } .searchBox { width: 100%; margin-top: 4px; } .content { padding-left: 25px; padding-right: 20px; } .line { left: 53px; } .item { padding-left: 74px; } }
