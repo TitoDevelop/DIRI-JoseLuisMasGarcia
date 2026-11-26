@@ -1,0 +1,54 @@
+# AC 2.4 - Planificación
+
+**Alumno:** José Luis Mas García  
+**Asignatura:** Desarrollo de Interfaces Ricos para Internet
+
+## Idea inicial
+
+He planteado una pantalla con el reloj en la parte superior y el historial de horas guardadas debajo. Así se puede ver rápidamente la hora y usar el botón sin cambiar de pantalla. El prototipo inicial está en `prototipo-baja-fidelidad.svg`, preparado para importarlo en Figma.
+
+## Componentes
+
+### App
+
+Es el contenedor de la pantalla y mantiene el listado de instantes guardados.
+
+- **Props:** ninguna.
+- **Estado:** `instantes`, array de objetos con `id` y `fecha`.
+- **Efectos:** ninguno.
+- **Función `guardarInstante`:** recibe una fecha desde `Reloj` y añade un nuevo elemento al historial.
+
+### Reloj
+
+Muestra la hora actual con horas, minutos y segundos. Tiene el botón para guardar el instante actual.
+
+- **Props:** `onGuardar`, función que recibe una fecha.
+- **Estado:** `ahora`, objeto `Date` que representa la hora que se está mostrando.
+- **Efectos:** `useEffect` crea un `setInterval` de un segundo que actualiza `ahora`. Al desmontarse se elimina con `clearInterval`.
+- **Evento:** al pulsar el botón llama a `onGuardar(new Date())` para registrar el instante real del clic.
+
+### ListaInstantes
+
+Muestra todos los instantes que se han guardado, del más reciente al más antiguo.
+
+- **Props:** `instantes`, array recibido de `App`.
+- **Estado:** ninguno; utiliza directamente las props.
+- **Efectos:** ninguno.
+- **Presentación:** si no hay instantes aparece un aviso; si los hay se recorren con `map` y se imprime la hora y la fecha.
+
+## Relación entre componentes
+
+`App` contiene `Reloj` y `ListaInstantes`. El botón de `Reloj` informa a `App` mediante `onGuardar`; `App` actualiza su estado y envía los nuevos datos a `ListaInstantes` mediante `instantes`.
+
+## Correspondencia con el código
+
+Los componentes están en `src/App.tsx`, `src/components/Reloj.tsx` y `src/components/ListaInstantes.tsx`. He dejado comentarios breves junto al estado, el intervalo y la visualización de la lista para relacionarlos con esta planificación.
+
+## Comprobaciones a realizar
+
+1. La hora debe cambiar cada segundo, sin necesidad de recargar la página.
+2. Al pulsar el botón, aparece un instante nuevo en el historial.
+3. Al pulsar varias veces, todos los instantes se conservan y aparecen ordenados.
+4. Si todavía no se ha pulsado, aparece un mensaje indicando que la lista está vacía.
+
+No hay persistencia al recargar la página porque el enunciado pide trabajar con el estado de React, no con almacenamiento permanente.
