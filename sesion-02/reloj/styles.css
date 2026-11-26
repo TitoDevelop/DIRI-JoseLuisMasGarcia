@@ -1,23 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="780" height="850" viewBox="0 0 780 850">
-<rect width="780" height="850" fill="#ededed"/>
-<rect x="72" y="45" width="636" height="760" rx="7" fill="#fff" stroke="#555" stroke-width="2"/>
-<text x="108" y="84" font-size="16" font-family="Arial">DIRI / SESIÓN 02</text>
-<text x="108" y="132" font-size="36" font-family="Arial" font-weight="bold">Mi reloj</text>
-<text x="108" y="163" font-size="16" font-family="Arial">Reloj y registro de instantes</text>
-<rect x="107" y="198" width="566" height="280" rx="6" fill="#f8f8f8" stroke="#555" stroke-width="2"/>
-<text x="390" y="235" text-anchor="middle" font-size="15" font-family="Arial">HORA ACTUAL</text>
-<text x="390" y="318" text-anchor="middle" font-size="70" font-family="monospace" font-weight="bold">12:30:45</text>
-<text x="390" y="358" text-anchor="middle" font-size="17" font-family="Arial">Viernes, 20 de noviembre</text>
-<rect x="290" y="391" width="200" height="49" rx="4" fill="#ddd" stroke="#555" stroke-width="2"/>
-<text x="390" y="421" text-anchor="middle" font-size="17" font-family="Arial">Guardar instante</text>
-<rect x="107" y="504" width="566" height="224" rx="6" fill="#f8f8f8" stroke="#555" stroke-width="2"/>
-<text x="132" y="543" font-size="22" font-family="Arial" font-weight="bold">Instantes guardados</text>
-<text x="631" y="543" text-anchor="end" font-size="17" font-family="Arial">3</text>
-<line x1="132" y1="561" x2="647" y2="561" stroke="#999"/>
-<text x="132" y="596" font-size="16" font-family="Arial">#3</text><text x="230" y="596" font-size="18" font-family="monospace">12:30:45</text><text x="543" y="596" font-size="15" font-family="Arial">20/11/2026</text>
-<line x1="132" y1="616" x2="647" y2="616" stroke="#bbb"/>
-<text x="132" y="651" font-size="16" font-family="Arial">#2</text><text x="230" y="651" font-size="18" font-family="monospace">12:28:12</text><text x="543" y="651" font-size="15" font-family="Arial">20/11/2026</text>
-<line x1="132" y1="670" x2="647" y2="670" stroke="#bbb"/>
-<text x="132" y="705" font-size="16" font-family="Arial">#1</text><text x="230" y="705" font-size="18" font-family="monospace">12:27:06</text><text x="543" y="705" font-size="15" font-family="Arial">20/11/2026</text>
-<text x="390" y="778" text-anchor="middle" font-size="15" font-family="Arial">José Luis Mas García · AC 2.4</text>
-</svg>
+:root { font-family: Arial, Helvetica, sans-serif; color: #252b32; background: #f3f1ed; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.contenedor { width: min(680px, calc(100% - 32px)); margin: 56px auto 32px; }
+.pagina-cabecera { margin-bottom: 24px; }
+.marca { font-size: 11px; letter-spacing: 2px; color: #79716a; font-weight: 700; }
+h1 { margin: 12px 0 5px; font-size: 35px; letter-spacing: -1.2px; }
+.pagina-cabecera p { color: #6d7074; margin: 0; font-size: 15px; }
+.reloj { background: #fff; border: 1px solid #dfddd8; border-radius: 9px; padding: 40px 24px; text-align: center; }
+.eyebrow { color: #74787a; font-size: 12px; font-weight: bold; letter-spacing: 2px; margin: 0 0 14px; }
+.hora { font-size: clamp(48px, 11vw, 77px); font-weight: 700; letter-spacing: -3px; font-variant-numeric: tabular-nums; color: #2d5256; }
+.fecha { color: #74787a; margin: 12px 0 30px; text-transform: capitalize; }
+.guardar { padding: 13px 20px; background: #2d5256; border: 1px solid #2d5256; border-radius: 5px; color: white; font-size: 14px; cursor: pointer; }
+.guardar:hover { background: #214044; }
+.guardar:focus-visible { outline: 3px solid #a2cfca; outline-offset: 3px; }
+.historial { background: #fff; border: 1px solid #dfddd8; border-radius: 9px; padding: 22px 25px; margin-top: 20px; }
+.historial-cabecera { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+h2 { margin: 0; font-size: 18px; }
+.contador { background: #e7eeee; border-radius: 15px; color: #2d5256; font-size: 12px; padding: 5px 10px; }
+.vacio { font-size: 14px; color: #74787a; line-height: 1.5; padding: 18px 0 4px; }
+.lista { list-style: none; padding: 0; margin: 14px 0 0; }
+.lista li { display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #ece9e4; }
+.numero { font-size: 12px; color: #888; min-width: 36px; }
+.instante-hora { font-weight: bold; color: #2d5256; font-variant-numeric: tabular-nums; }
+.instante-fecha { font-size: 13px; color: #777; margin-left: auto; }
+footer { text-align: center; color: #888; font-size: 12px; padding: 26px 0; }
+@media (max-width: 420px) { .contenedor { margin-top: 28px; } .reloj { padding: 30px 14px; } .historial { padding: 18px; } .lista li { gap: 8px; } }

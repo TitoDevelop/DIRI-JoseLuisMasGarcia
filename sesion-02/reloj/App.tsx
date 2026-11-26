@@ -1,27 +1,28 @@
-:root { font-family: Arial, Helvetica, sans-serif; color: #252b32; background: #f3f1ed; font-synthesis: none; }
-* { box-sizing: border-box; }
-body { margin: 0; }
-.contenedor { width: min(680px, calc(100% - 32px)); margin: 56px auto 32px; }
-.pagina-cabecera { margin-bottom: 24px; }
-.marca { font-size: 11px; letter-spacing: 2px; color: #79716a; font-weight: 700; }
-h1 { margin: 12px 0 5px; font-size: 35px; letter-spacing: -1.2px; }
-.pagina-cabecera p { color: #6d7074; margin: 0; font-size: 15px; }
-.reloj { background: #fff; border: 1px solid #dfddd8; border-radius: 9px; padding: 40px 24px; text-align: center; }
-.eyebrow { color: #74787a; font-size: 12px; font-weight: bold; letter-spacing: 2px; margin: 0 0 14px; }
-.hora { font-size: clamp(48px, 11vw, 77px); font-weight: 700; letter-spacing: -3px; font-variant-numeric: tabular-nums; color: #2d5256; }
-.fecha { color: #74787a; margin: 12px 0 30px; text-transform: capitalize; }
-.guardar { padding: 13px 20px; background: #2d5256; border: 1px solid #2d5256; border-radius: 5px; color: white; font-size: 14px; cursor: pointer; }
-.guardar:hover { background: #214044; }
-.guardar:focus-visible { outline: 3px solid #a2cfca; outline-offset: 3px; }
-.historial { background: #fff; border: 1px solid #dfddd8; border-radius: 9px; padding: 22px 25px; margin-top: 20px; }
-.historial-cabecera { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-h2 { margin: 0; font-size: 18px; }
-.contador { background: #e7eeee; border-radius: 15px; color: #2d5256; font-size: 12px; padding: 5px 10px; }
-.vacio { font-size: 14px; color: #74787a; line-height: 1.5; padding: 18px 0 4px; }
-.lista { list-style: none; padding: 0; margin: 14px 0 0; }
-.lista li { display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #ece9e4; }
-.numero { font-size: 12px; color: #888; min-width: 36px; }
-.instante-hora { font-weight: bold; color: #2d5256; font-variant-numeric: tabular-nums; }
-.instante-fecha { font-size: 13px; color: #777; margin-left: auto; }
-footer { text-align: center; color: #888; font-size: 12px; padding: 26px 0; }
-@media (max-width: 420px) { .contenedor { margin-top: 28px; } .reloj { padding: 30px 14px; } .historial { padding: 18px; } .lista li { gap: 8px; } }
+import { useState } from 'react';
+import Reloj from './Reloj';
+import ListaInstantes, { type Instante } from './ListaInstantes';
+
+export default function App() {
+  // La lista se mantiene aquí, ya que se usa desde el botón del reloj y el historial.
+  const [instantes, setInstantes] = useState<Instante[]>([]);
+
+  function guardarInstante(fecha: Date) {
+    setInstantes((anteriores) => [
+      { id: anteriores.length ? anteriores[0].id + 1 : 1, fecha },
+      ...anteriores,
+    ]);
+  }
+
+  return (
+    <main className="contenedor">
+      <header className="pagina-cabecera">
+        <span className="marca">DIRI / SESIÓN 02</span>
+        <h1>Mi reloj</h1>
+        <p>Un reloj sencillo para guardar momentos del día.</p>
+      </header>
+      <Reloj onGuardar={guardarInstante} />
+      <ListaInstantes instantes={instantes} />
+      <footer>José Luis Mas García · AC 2.4</footer>
+    </main>
+  );
+}

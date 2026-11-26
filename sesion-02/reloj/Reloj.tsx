@@ -1,28 +1,36 @@
-import { useState } from 'react';
-import Reloj from './components/Reloj';
-import ListaInstantes, { type Instante } from './components/ListaInstantes';
+import { useEffect, useState } from 'react';
 
-export default function App() {
-  // La lista se mantiene aquí, ya que se usa desde el botón del reloj y el historial.
-  const [instantes, setInstantes] = useState<Instante[]>([]);
+interface RelojProps {
+  onGuardar: (fecha: Date) => void;
+}
 
-  function guardarInstante(fecha: Date) {
-    setInstantes((anteriores) => [
-      { id: anteriores.length ? anteriores[0].id + 1 : 1, fecha },
-      ...anteriores,
-    ]);
-  }
+function dosDigitos(valor: number): string {
+  return String(valor).padStart(2, '0');
+}
+
+// El propio reloj lleva el estado de la hora y actualiza ese estado cada segundo.
+export default function Reloj({ onGuardar }: RelojProps) {
+  const [ahora, setAhora] = useState<Date>(() => new Date());
+
+  useEffect(() => {
+    const intervalo = window.setInterval(() => {
+      setAhora(new Date());
+    }, 1000);
+
+    // Evita dejar un intervalo funcionando si se desmonta el componente.
+    return () => window.clearInterval(intervalo);
+  }, []);
+
+  const hora = `${dosDigitos(ahora.getHours())}:${dosDigitos(ahora.getMinutes())}:${dosDigitos(ahora.getSeconds())}`;
 
   return (
-    <main className="contenedor">
-      <header className="pagina-cabecera">
-        <span className="marca">DIRI / SESIÓN 02</span>
-        <h1>Mi reloj</h1>
-        <p>Un reloj sencillo para guardar momentos del día.</p>
-      </header>
-      <Reloj onGuardar={guardarInstante} />
-      <ListaInstantes instantes={instantes} />
-      <footer>José Luis Mas García · AC 2.4</footer>
-    </main>
+    <section className="reloj" aria-label="Reloj actual">
+      <p className="eyebrow">HORA ACTUAL</p>
+      <div className="hora" role="timer" aria-live="off">{hora}</div>
+      <p className="fecha">{ahora.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+      <button className="guardar" onClick={() => onGuardar(new Date())}>
+        + Guardar instante
+      </button>
+    </section>
   );
 }
