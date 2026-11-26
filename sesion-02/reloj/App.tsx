@@ -38,6 +38,10 @@ export default function App() {
     ]);
   }
 
+  function borrarInstante(id: number) {
+    setInstantes((anteriores) => anteriores.filter((instante) => instante.id !== id));
+  }
+
   return (
     <main className="contenedor">
       <header className="pagina-cabecera">
@@ -46,8 +50,8 @@ export default function App() {
         <p>Un reloj sencillo para guardar momentos del día.</p>
       </header>
       <Reloj onGuardar={guardarInstante} />
-      <ListaInstantes instantes={instantes} />
-      <footer>José Luis Mas García · AO 2.5</footer>
+      <ListaInstantes instantes={instantes} onBorrar={borrarInstante} />
+      <footer>José Luis Mas García · AO 2.6</footer>
     </main>
   );
 }
